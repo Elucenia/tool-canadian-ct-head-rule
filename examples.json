@@ -1,0 +1,66 @@
+[
+  {
+    "label": "Adulto jovem, nenhum critério: TC dispensável",
+    "input": {},
+    "expected": {
+      "raw": {
+        "ct": 0
+      },
+      "level": "low",
+      "verdict": "dispensável"
+    },
+    "originalInput": [],
+    "expandedZeroOptions": []
+  },
+  {
+    "label": "Idade ≥ 65 anos: alto risco",
+    "input": {
+      "idade65": true
+    },
+    "expected": {
+      "raw": {
+        "ct": 1,
+        "tier": 2
+      },
+      "level": "high",
+      "verdict": "Alto risco"
+    },
+    "originalInput": {
+      "idade65": true
+    },
+    "expandedZeroOptions": []
+  },
+  {
+    "label": "Só mecanismo perigoso: médio risco",
+    "input": {
+      "mecanismo": true
+    },
+    "expected": {
+      "raw": {
+        "ct": 1,
+        "tier": 1
+      },
+      "level": "mid",
+      "verdict": "Médio risco"
+    },
+    "originalInput": {
+      "mecanismo": true
+    },
+    "expandedZeroOptions": []
+  },
+  {
+    "label": "Critério de exclusão: regra não se aplica",
+    "input": {
+      "excl": true,
+      "vomito": true
+    },
+    "expected": {
+      "error": true
+    },
+    "originalInput": {
+      "excl": true,
+      "vomito": true
+    },
+    "expandedZeroOptions": []
+  }
+]

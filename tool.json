@@ -1,0 +1,215 @@
+{
+  "tool": {
+    "id": "canadian-ct-head-rule",
+    "title": "Canadian CT Head Rule",
+    "short": "Indicação de TC no trauma craniano leve",
+    "desc": "Aplique a Canadian CT Head Rule no trauma cranioencefálico leve (Glasgow 13 a 15) e veja se a tomografia de crânio está indicada por alto ou médio risco.",
+    "lead": "Regra de decisão para adultos com trauma craniano leve (perda de consciência, amnésia ou desorientação testemunhadas e Glasgow 13 a 15) que identifica quem precisa de tomografia de crânio.",
+    "spec": [
+      "medicina-de-emergencia",
+      "neurocirurgia",
+      "neurologia",
+      "radiologia-e-diagnostico-por-imagem",
+      "cirurgia-geral"
+    ],
+    "tier": 1,
+    "fields": [
+      [
+        "excl",
+        "Critério de exclusão: &lt; 16 anos, anticoagulado ou coagulopatia, convulsão pós-trauma, déficit neurológico focal, trauma penetrante, fratura com afundamento evidente, instabilidade hemodinâmica ou gestante",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "gcs2h",
+        "<strong>Alto risco:</strong> Glasgow &lt; 15 duas horas após o trauma",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "frat",
+        "<strong>Alto risco:</strong> suspeita de fratura de crânio aberta ou com afundamento",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "base",
+        "<strong>Alto risco:</strong> sinal de fratura de base (hemotímpano, olhos de guaxinim, oto ou rinoliquorreia, sinal de Battle)",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "vomito",
+        "<strong>Alto risco:</strong> 2 ou mais episódios de vômito",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "idade65",
+        "<strong>Alto risco:</strong> idade ≥ 65 anos",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "amnesia",
+        "<strong>Médio risco:</strong> amnésia retrógrada de 30 minutos ou mais antes do impacto",
+        "chk",
+        {
+          "pts": 0
+        }
+      ],
+      [
+        "mecanismo",
+        "<strong>Médio risco:</strong> mecanismo perigoso (pedestre atropelado, ejeção de veículo, queda de mais de 0,9 m ou 5 degraus)",
+        "chk",
+        {
+          "pts": 0
+        }
+      ]
+    ],
+    "formula": "<p>Aplica-se a pacientes com trauma craniano leve: perda de consciência, amnésia ou desorientação testemunhadas, com Glasgow 13 a 15.</p><ul><li><strong>Alto risco</strong> (para intervenção neurocirúrgica): Glasgow &lt; 15 em 2 h, suspeita de fratura aberta/afundamento, sinal de fratura de base, ≥ 2 vômitos, idade ≥ 65 anos.</li><li><strong>Médio risco</strong> (para lesão cerebral na TC): amnésia retrógrada ≥ 30 min, mecanismo perigoso.</li></ul><p>Qualquer critério presente indica TC de crânio.</p>",
+    "table": [
+      [
+        "Resultado",
+        "Desfecho previsto",
+        "Sensibilidade na derivação"
+      ],
+      [
+        "Algum critério de alto risco",
+        "Necessidade de intervenção neurocirúrgica",
+        "100%"
+      ],
+      [
+        "Algum critério de alto ou médio risco",
+        "Lesão cerebral clinicamente importante na TC",
+        "98,4%"
+      ]
+    ],
+    "tips": [
+      "A regra só vale para quem teve perda de consciência, amnésia ou desorientação testemunhadas. Sem isso, o paciente está fora da população estudada.",
+      "Anticoagulados foram excluídos da derivação: nesses pacientes, a tendência é pedir TC mesmo sem critérios.",
+      "No estudo de validação, a regra foi mais sensível e mais específica que os critérios de New Orleans para lesão clinicamente importante.",
+      "Não use em crianças: para menores de 18 anos, prefira as regras pediátricas validadas (ex.: PECARN).",
+      "Alta com TC dispensável exige orientação escrita sobre sinais de alarme (cefaleia progressiva, vômitos, sonolência, convulsão) e acompanhante responsável."
+    ],
+    "sources": [
+      [
+        "Stiell IG et al. The Canadian CT Head Rule for patients with minor head injury. Lancet, 2001.",
+        "https://doi.org/10.1016/S0140-6736(00)04561-X"
+      ],
+      [
+        "Stiell IG et al. Comparison of the Canadian CT Head Rule and the New Orleans Criteria in patients with minor head injury. JAMA, 2005.",
+        "https://doi.org/10.1001/jama.294.12.1511"
+      ]
+    ],
+    "cases": [
+      [
+        "Adulto jovem, nenhum critério: TC dispensável",
+        [],
+        {
+          "raw": {
+            "ct": 0
+          },
+          "level": "low",
+          "verdict": "dispensável"
+        }
+      ],
+      [
+        "Idade ≥ 65 anos: alto risco",
+        {
+          "idade65": true
+        },
+        {
+          "raw": {
+            "ct": 1,
+            "tier": 2
+          },
+          "level": "high",
+          "verdict": "Alto risco"
+        }
+      ],
+      [
+        "Só mecanismo perigoso: médio risco",
+        {
+          "mecanismo": true
+        },
+        {
+          "raw": {
+            "ct": 1,
+            "tier": 1
+          },
+          "level": "mid",
+          "verdict": "Médio risco"
+        }
+      ],
+      [
+        "Critério de exclusão: regra não se aplica",
+        {
+          "excl": true,
+          "vomito": true
+        },
+        {
+          "error": true
+        }
+      ]
+    ],
+    "batch": "urgencia",
+    "kind": "Calculadora",
+    "config": null,
+    "areaId": "urgencia",
+    "clinicalReview": "pending",
+    "sourceReview": "pending",
+    "sourceFile": "app/content/ferramentas/urgencia.php",
+    "arithmeticTest": {
+      "status": "passed",
+      "testedAt": "2026-09-25",
+      "total": 4,
+      "passed": 4,
+      "failures": []
+    },
+    "independentArithmeticTest": {
+      "status": "not-tested",
+      "testedAt": null,
+      "total": 0,
+      "passed": 0,
+      "cases": []
+    }
+  },
+  "review": {
+    "id": "canadian-ct-head-rule",
+    "reason": "A saída principal mostra TC de crânio indicada ou dispensável; a interface a tratava como resultado numérico. Suspender execução até revisão da população elegível, exclusões, exame clínico e mapeamento da saída, mantendo a regra e a publicação documentadas.",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/11356436/",
+    "sourceTitle": "Stiell et al. — Canadian CT Head Rule (estudo original)",
+    "sourceDate": "2001-05-05",
+    "publisherRegion": "Canadá",
+    "observedMain": [
+      "Dispensável — TC de crânio",
+      "Indicada — TC de crânio"
+    ],
+    "status": "restricted",
+    "checkedAt": "2026-09-25",
+    "clinicalValidation": "not-performed",
+    "reviewScope": "Triagem da saída de software em casos fornecidos; identificação da publicação original e conferência limitada de seu contexto. Não é auditoria integral da regra, validação clínica ou revisão médica assinada.",
+    "implementationOutputAudit": "completed-on-supplied-cases",
+    "sourceReviewDepth": "original-reference-and-context-only",
+    "suppressLegacyFormula": true
+  },
+  "sourceFile": {
+    "path": "app/content/ferramentas/urgencia.php",
+    "sha256": "b24f3a77383430c3f3463168e78e88341034b3108bd712f3613ae32672dc281c",
+    "bytes": 121059
+  },
+  "clinicalValidation": "not-performed"
+}
